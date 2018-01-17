@@ -2,6 +2,7 @@ describe('blinkyDancer', function() {
 
   var blinkyDancer, clock;
   var timeBetweenSteps = 100;
+  var clock;
 
   beforeEach(function() {
     clock = sinon.useFakeTimers();
@@ -20,6 +21,17 @@ describe('blinkyDancer', function() {
 
   describe('dance', function() {
     it('should call step at least once per second', function() {
+       /*var spy = function(object, property){
+         var origFn = object[property];
+
+         var spyFn = function(){
+           spyFn.callCount++;
+           return origFn.apply(object, arguments);
+         }
+         spyFn.callCount = 0;
+         object[property] = spyFn
+       }
+       */
       sinon.spy(blinkyDancer, 'step');
       expect(blinkyDancer.step.callCount).to.be.equal(0);
       clock.tick(timeBetweenSteps); // ? it seems an extra tick is necessary...
